@@ -22,6 +22,38 @@
 
 ---
 
+## 💻 Developer SDK Quickstart (Client Interface)
+
+Developers and automated agents interact with the Deterministic Level-0 Kernel through high-level language bindings while the proprietary mathematical engines and Lean formal verifications remain fully encapsulated at the bare-metal kernel layer.
+
+```python
+# ==============================================================================
+# Qubic × Deterministic Native AI SDK — Quickstart Example
+# ==============================================================================
+from guanes_kernel import (
+    BaseKernelLevel0,
+    OncologyKernel,
+    RoboticsAutogyroKernel,
+    VideoBridge
+)
+
+# 1. Real-time telemetry & script audit (Read-Only / Zero mutation risk)
+hud = VideoBridge.get_hud_metrics("d1")
+print(f"HUD: {hud.hud_pHe} | {hud.hud_vmem} | {hud.hud_status}")
+
+# 2. Closed-loop deterministic flight control at 50 Hz
+autogyro = RoboticsAutogyroKernel()
+pulses = autogyro.simulate_standard_5_pulse_mission()
+
+# 3. Anti-hallucination formal verification (Fail-Closed / Void Ab Initio)
+audit = VideoBridge.audit_script_claims("Investigación bioeléctrica in-silico.")
+assert audit.passed is True
+```
+
+> **IP Protection Note:** The Python SDK acts as an immutable client bridge. All causal inference models, biological state lattices, and Lean-verified formal proof routines operate within the protected Level-0 kernel boundary.
+
+---
+
 ## 📂 Repository Contents
 
 | Document / Specification | Description |

@@ -436,18 +436,28 @@
           </div>
         </div>
 
-        <!-- Live Response Output (7 Cols) -->
+        <!-- Live Response Output & SDK Showcase (7 Cols) -->
         <div class="lg:col-span-7 code-terminal rounded-2xl p-6 flex flex-col justify-between font-mono text-xs">
           <div>
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3 text-slate-400">
+            <!-- Terminal Tabs -->
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
               <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-qubic-emerald"></span>
-                <span class="text-slate-300 font-bold">RESPUESTA DEL ORÁCULO DETERMINISTA</span>
+                <button id="tab-btn-json" onclick="switchTerminalTab('json')" class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-slate-800 text-qubic-emerald border border-slate-700 transition">
+                  ● Respuesta JSON
+                </button>
+                <button id="tab-btn-sdk" onclick="switchTerminalTab('sdk')" class="px-2.5 py-1 rounded text-xs font-mono text-slate-400 hover:text-white hover:bg-slate-850 border border-transparent transition">
+                  Python SDK (guanes_kernel)
+                </button>
+                <button id="tab-btn-proto" onclick="switchTerminalTab('proto')" class="px-2.5 py-1 rounded text-xs font-mono text-slate-400 hover:text-white hover:bg-slate-850 border border-transparent transition">
+                  oracle.proto
+                </button>
               </div>
               <span id="oracle-exec-time" class="text-qubic-cyan font-semibold">LATENCIA: 6.88 µs</span>
             </div>
 
-            <pre id="oracle-json-response" class="text-emerald-400 text-xs overflow-x-auto whitespace-pre-wrap leading-relaxed">
+            <!-- TAB 1: Live JSON Response -->
+            <div id="terminal-tab-json">
+              <pre id="oracle-json-response" class="text-emerald-400 text-xs overflow-x-auto whitespace-pre-wrap leading-relaxed">
 {
   "request_id": "req_qubic_550e8400-e29b-41d4-a716-446655440000",
   "status": "STATUS_VERIFIED_SUCCESS",
@@ -458,12 +468,58 @@
   "microfee_deducted_qubic": 250,
   "computor_witness_count": 676
 }
-            </pre>
+              </pre>
+            </div>
+
+            <!-- TAB 2: Python SDK Code Snippet -->
+            <div id="terminal-tab-sdk" class="hidden">
+              <pre class="text-xs overflow-x-auto leading-relaxed text-slate-300 font-mono">
+<span class="text-slate-500"># ==============================================================</span>
+<span class="text-slate-500"># Integración en cualquier agente, pipeline o script Python</span>
+<span class="text-slate-500"># ==============================================================</span>
+<span class="text-purple-400">from</span> <span class="text-cyan-300">guanes_kernel</span> <span class="text-purple-400">import</span> (
+    <span class="text-yellow-300">BaseKernelLevel0</span>,
+    <span class="text-yellow-300">OncologyKernel</span>,
+    <span class="text-yellow-300">RoboticsAutogyroKernel</span>,
+    <span class="text-yellow-300">VideoBridge</span>
+)
+
+<span class="text-slate-500"># 1. Acceso a métricas de video y auditoría sin riesgo de escritura</span>
+hud = <span class="text-yellow-300">VideoBridge</span>.<span class="text-qubic-cyan">get_hud_metrics</span>(<span class="text-emerald-400">"d1"</span>)
+<span class="text-blue-400">print</span>(<span class="text-emerald-400">f"HUD: {hud.hud_pHe} | {hud.hud_vmem} | {hud.hud_status}"</span>)
+
+<span class="text-slate-500"># 2. Control de vuelo táctico a 50 Hz (Inferencia Determinista)</span>
+autogyro = <span class="text-yellow-300">RoboticsAutogyroKernel</span>()
+pulses = autogyro.<span class="text-qubic-cyan">simulate_standard_5_pulse_mission</span>()
+
+<span class="text-slate-500"># 3. Auditoría anti-alucinación de claims médicos (Fail-Closed)</span>
+audit = <span class="text-yellow-300">VideoBridge</span>.<span class="text-qubic-cyan">audit_script_claims</span>(<span class="text-emerald-400">"Investigación bioeléctrica in-silico."</span>)
+<span class="text-purple-400">assert</span> audit.passed <span class="text-purple-400">is</span> <span class="text-amber-400">True</span>
+              </pre>
+              <div class="mt-3 p-2.5 rounded bg-slate-900/90 border border-slate-800 text-[11px] text-slate-400 flex items-center gap-2">
+                <span class="text-qubic-emerald">🛡️</span>
+                <span><strong>Protección IP (Caja Negra):</strong> La interfaz de cliente expone llamadas puras; la formulación formal Lean y los grafos causales corren encapsulados en el núcleo L0 nativo.</span>
+              </div>
+            </div>
+
+            <!-- TAB 3: Protobuf Spec Preview -->
+            <div id="terminal-tab-proto" class="hidden">
+              <pre class="text-slate-400 text-xs overflow-x-auto leading-relaxed font-mono">
+<span class="text-purple-400">syntax</span> = <span class="text-emerald-400">"proto3"</span>;
+<span class="text-purple-400">package</span> qubic.oracle.v1;
+
+<span class="text-yellow-300">service</span> <span class="text-cyan-300">DeterministicInferenceOracle</span> {
+  <span class="text-purple-400">rpc</span> <span class="text-qubic-cyan">VerifyInference</span> (<span class="text-yellow-300">InferenceProofRequest</span>) <span class="text-purple-400">returns</span> (<span class="text-yellow-300">InferenceProofResponse</span>);
+  <span class="text-purple-400">rpc</span> <span class="text-qubic-cyan">StreamValidation</span> (<span class="text-yellow-300">ContinuousValidationRequest</span>) <span class="text-purple-400">returns</span> (<span class="text-purple-400">stream</span> <span class="text-yellow-300">TelemetryPulse</span>);
+}
+              </pre>
+            </div>
+
           </div>
 
           <!-- Bottom Microservice Info -->
           <div class="pt-4 mt-4 border-t border-slate-800 text-[11px] text-slate-500 flex flex-wrap items-center justify-between gap-2">
-            <span>Soporte: C++ SDK, Go, Rust, TypeScript, Python</span>
+            <span>Soporte nativo: C++ ABI, Python SDK, Rust, Go, TypeScript</span>
             <a href="oracle_api_spec.proto" download class="text-qubic-cyan hover:underline flex items-center gap-1">
               Descargar Protobuf Specification (oracle_api_spec.proto) ↗
             </a>
@@ -686,7 +742,39 @@
       document.getElementById('oracle-payload-editor').value = data.payload;
     }
 
+    function switchTerminalTab(tab) {
+      const tabJson = document.getElementById('terminal-tab-json');
+      const tabSdk = document.getElementById('terminal-tab-sdk');
+      const tabProto = document.getElementById('terminal-tab-proto');
+
+      const btnJson = document.getElementById('tab-btn-json');
+      const btnSdk = document.getElementById('tab-btn-sdk');
+      const btnProto = document.getElementById('tab-btn-proto');
+
+      // Reset active styles
+      [btnJson, btnSdk, btnProto].forEach(b => {
+        b.className = 'px-2.5 py-1 rounded text-xs font-mono text-slate-400 hover:text-white hover:bg-slate-850 border border-transparent transition';
+      });
+
+      // Hide all tabs
+      tabJson.classList.add('hidden');
+      tabSdk.classList.add('hidden');
+      tabProto.classList.add('hidden');
+
+      if (tab === 'json') {
+        tabJson.classList.remove('hidden');
+        btnJson.className = 'px-2.5 py-1 rounded text-xs font-mono font-bold bg-slate-800 text-qubic-emerald border border-slate-700 transition';
+      } else if (tab === 'sdk') {
+        tabSdk.classList.remove('hidden');
+        btnSdk.className = 'px-2.5 py-1 rounded text-xs font-mono font-bold bg-slate-800 text-qubic-cyan border border-slate-700 transition';
+      } else if (tab === 'proto') {
+        tabProto.classList.remove('hidden');
+        btnProto.className = 'px-2.5 py-1 rounded text-xs font-mono font-bold bg-slate-800 text-purple-400 border border-slate-700 transition';
+      }
+    }
+
     function executeOracleCall() {
+      switchTerminalTab('json');
       const respBox = document.getElementById('oracle-json-response');
       const timeTag = document.getElementById('oracle-exec-time');
       const vertical = document.getElementById('oracle-vertical-select').value;
