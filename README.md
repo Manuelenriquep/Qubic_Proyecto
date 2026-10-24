@@ -1,6 +1,7 @@
 # Qubic × Deterministic Native AI | Causal Inference Oracle & Level-0 Bare-Metal Kernel
 
 [![Live Showcase](https://img.shields.io/badge/Demo-Live%20Showcase-00F5FF?style=for-the-badge&logo=vercel)](https://qubic-deterministic-ai.vercel.app/)
+[![Live Showroom](https://img.shields.io/badge/Live%20Showroom-chatai.guanes.biz-10B981?style=for-the-badge&logo=cloudflare)](https://chatai.guanes.biz)
 [![Qubic Ecosystem](https://img.shields.io/badge/Ecosystem-Qubic%20%26%20Aigarth-00E676?style=for-the-badge)](https://qubic.org)
 [![Status](https://img.shields.io/badge/Status-Community%20Proposal-6366F1?style=for-the-badge)](#)
 
@@ -70,6 +71,7 @@ assert audit.passed is True
 ## 🚀 Quick Links
 
 - **Interactive Presentation:** [https://qubic-deterministic-ai.vercel.app/](https://qubic-deterministic-ai.vercel.app/)
+- **Live Deterministic Chat (Production Showroom):** [https://chatai.guanes.biz](https://chatai.guanes.biz)
 - **Master Proposal (English):** [TECHNICAL_AND_ECONOMIC_PROPOSAL_QUBIC.md](./TECHNICAL_AND_ECONOMIC_PROPOSAL_QUBIC.md)
 - **Official Qubic Website:** [https://qubic.org](https://qubic.org)
 
